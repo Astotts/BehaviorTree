@@ -16,7 +16,10 @@ namespace BehaviorTree
                 switch (node.Evaluate())
                 {
                     case NodeState.FAILURE:
-                        continue;
+                        continue; //https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements
+                        //continue jumps out of the immediate most "enclosing iteration statement" (bracket pair if,while,for,switch)
+                        //break jumps out of all loops
+                        //return jumps out of the function alltogether
                     case NodeState.SUCCESS:
                         state = NodeState.SUCCESS;
                         return state;
@@ -27,6 +30,11 @@ namespace BehaviorTree
                         continue;
                 }
             }
+            //In other words if node state is FAILURE evalute the next child
+            //If node state is success execute that node and do not evalute other
+            //If node state is running execut that node and do not evalute other
+
+            //chooses the first node to evalute as success to continue (OR logic gate)
 
             state = NodeState.FAILURE;
             return state;
@@ -35,3 +43,4 @@ namespace BehaviorTree
     }
 
 }
+

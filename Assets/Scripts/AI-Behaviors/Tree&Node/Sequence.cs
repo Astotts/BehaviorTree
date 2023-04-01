@@ -28,6 +28,12 @@ namespace BehaviorTree
                         return state;
                 }
             }
+            //Failure dont execute node, dont execute/evaluate other children
+            //Success execute node and evaluate other children
+            //Running execute node and children
+
+            //If children are running block program into a running state until children have stopped running
+            //If all children have succeeded then the sequence will return success (AND logic gate)
 
             state = anyChildIsRunning ? NodeState.RUNNING : NodeState.SUCCESS;
             return state;
